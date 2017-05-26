@@ -1,0 +1,29 @@
+<input value="<%= @object.credit %>" class="form-control" size="0" type="text" name="provider[credit]" id="provider_credit" />
+<script>
+$(document).ready(function() {
+        var oldCredit = $("#provider_credit").val();
+        var newCredit;
+        var addedTicketInput = false;
+        var ticket_input_string = "<div class=\"form-group control-group integer_type ticket_id_field \" id=\"ticket_id_field\"><label class=\"col-sm-2 control-label\" for=\"ticket_id_name\">Ticket id</label><div class=\"col-sm-10 controls\"><input value=\"\" class=\"form-control\" size=\"0\" type=\"text\" name=\"ticket_id\" id=\"ticket_id\" />\n<span class=\"help-block\">Optional. </span></div>";
+        $("#edit_provider").submit(function(event) {
+            newCredit = $("#provider_credit").val();
+            if(newCredit != oldCredit) {
+                var name =  $("#provider_name").val();
+                var output = confirm("You are about to change Provider \""+name+"\" credits from "+oldCredit+" to "+newCredit);
+                if(!output) {
+                    event.preventDefault();
+                    alert("Submit cancelled");
+                    location.reload();
+                }
+            }
+            });
+        $("#provider_credit").on('input',function(){
+            newCredit = parseInt($("#provider_credit").val());
+            if( $.isNumeric(newCredit) && newCredit > oldCredit && !addedTicketInput) {
+            addedTicketInput = true;
+               $("#provider_credit_field").after(ticket_input_string); 
+            }
+
+            });
+});
+</script>

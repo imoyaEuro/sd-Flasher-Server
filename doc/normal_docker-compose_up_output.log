@@ -1,0 +1,289 @@
+# docker-compose  up
+Creating sdflasherserver_db_1...
+Creating sdflasherserver_web_1...
+Building web...
+Step 0 : FROM ruby:2.2.2
+ ---> a1ed99fd54db
+Step 1 : RUN apt-get update -qq && apt-get install -y build-essential libpq-dev
+ ---> Running in b2230ff3add3
+Reading package lists...
+Building dependency tree...
+Reading state information...
+libpq-dev is already the newest version.
+The following extra packages will be installed:
+  dpkg-dev fakeroot libalgorithm-diff-perl libalgorithm-diff-xs-perl
+  libalgorithm-merge-perl libdpkg-perl libfakeroot libfile-fcntllock-perl
+  libtimedate-perl
+Suggested packages:
+  debian-keyring
+The following NEW packages will be installed:
+  build-essential dpkg-dev fakeroot libalgorithm-diff-perl
+  libalgorithm-diff-xs-perl libalgorithm-merge-perl libdpkg-perl libfakeroot
+  libfile-fcntllock-perl libtimedate-perl
+0 upgraded, 10 newly installed, 0 to remove and 3 not upgraded.
+Need to get 2906 kB of archives.
+After this operation, 5040 kB of additional disk space will be used.
+Get:1 http://httpredir.debian.org/debian/ jessie/main libtimedate-perl all 2.3000-2 [42.2 kB]
+Get:2 http://httpredir.debian.org/debian/ jessie/main libdpkg-perl all 1.17.25 [1070 kB]
+Get:3 http://httpredir.debian.org/debian/ jessie/main dpkg-dev all 1.17.25 [1544 kB]
+Get:4 http://httpredir.debian.org/debian/ jessie/main libfile-fcntllock-perl amd64 0.22-1+b1 [36.4 kB]
+Get:5 http://httpredir.debian.org/debian/ jessie/main libfakeroot amd64 1.20.2-1 [44.7 kB]
+Get:6 http://httpredir.debian.org/debian/ jessie/main libalgorithm-diff-perl all 1.19.02-3 [51.7 kB]
+Get:7 http://httpredir.debian.org/debian/ jessie/main libalgorithm-diff-xs-perl amd64 0.04-3+b1 [12.2 kB]
+Get:8 http://httpredir.debian.org/debian/ jessie/main libalgorithm-merge-perl all 0.08-2 [13.5 kB]
+Get:9 http://httpredir.debian.org/debian/ jessie/main build-essential amd64 11.7 [7114 B]
+Get:10 http://httpredir.debian.org/debian/ jessie/main fakeroot amd64 1.20.2-1 [84.7 kB]
+debconf: delaying package configuration, since apt-utils is not installed
+Fetched 2906 kB in 4s (605 kB/s)
+Selecting previously unselected package libtimedate-perl.
+(Reading database ... 20970 files and directories currently installed.)
+Preparing to unpack .../libtimedate-perl_2.3000-2_all.deb ...
+Unpacking libtimedate-perl (2.3000-2) ...
+Selecting previously unselected package libdpkg-perl.
+Preparing to unpack .../libdpkg-perl_1.17.25_all.deb ...
+Unpacking libdpkg-perl (1.17.25) ...
+Selecting previously unselected package dpkg-dev.
+Preparing to unpack .../dpkg-dev_1.17.25_all.deb ...
+Unpacking dpkg-dev (1.17.25) ...
+Selecting previously unselected package build-essential.
+Preparing to unpack .../build-essential_11.7_amd64.deb ...
+Unpacking build-essential (11.7) ...
+Selecting previously unselected package libfakeroot:amd64.
+Preparing to unpack .../libfakeroot_1.20.2-1_amd64.deb ...
+Unpacking libfakeroot:amd64 (1.20.2-1) ...
+Selecting previously unselected package fakeroot.
+Preparing to unpack .../fakeroot_1.20.2-1_amd64.deb ...
+Unpacking fakeroot (1.20.2-1) ...
+Selecting previously unselected package libalgorithm-diff-perl.
+Preparing to unpack .../libalgorithm-diff-perl_1.19.02-3_all.deb ...
+Unpacking libalgorithm-diff-perl (1.19.02-3) ...
+Selecting previously unselected package libalgorithm-diff-xs-perl.
+Preparing to unpack .../libalgorithm-diff-xs-perl_0.04-3+b1_amd64.deb ...
+Unpacking libalgorithm-diff-xs-perl (0.04-3+b1) ...
+Selecting previously unselected package libalgorithm-merge-perl.
+Preparing to unpack .../libalgorithm-merge-perl_0.08-2_all.deb ...
+Unpacking libalgorithm-merge-perl (0.08-2) ...
+Selecting previously unselected package libfile-fcntllock-perl.
+Preparing to unpack .../libfile-fcntllock-perl_0.22-1+b1_amd64.deb ...
+Unpacking libfile-fcntllock-perl (0.22-1+b1) ...
+Setting up libtimedate-perl (2.3000-2) ...
+Setting up libdpkg-perl (1.17.25) ...
+Setting up dpkg-dev (1.17.25) ...
+Setting up build-essential (11.7) ...
+Setting up libfakeroot:amd64 (1.20.2-1) ...
+Setting up fakeroot (1.20.2-1) ...
+update-alternatives: using /usr/bin/fakeroot-sysv to provide /usr/bin/fakeroot (fakeroot) in auto mode
+Setting up libalgorithm-diff-perl (1.19.02-3) ...
+Setting up libalgorithm-diff-xs-perl (0.04-3+b1) ...
+Setting up libalgorithm-merge-perl (0.08-2) ...
+Setting up libfile-fcntllock-perl (0.22-1+b1) ...
+ ---> 4a5b3aa89c0c
+Removing intermediate container b2230ff3add3
+Step 2 : RUN mkdir /myapp
+ ---> Running in 670c3a3901f2
+ ---> 367f58809fa5
+Removing intermediate container 670c3a3901f2
+Step 3 : WORKDIR /myapp
+ ---> Running in 3150a507e936
+ ---> 91d5347c684f
+Removing intermediate container 3150a507e936
+Step 4 : ADD Gemfile* /myapp/
+ ---> 2a9ae417a2f9
+Removing intermediate container a6839184d2eb
+Step 5 : ENV BUNDLE_GEMFILE /myapp/Gemfile BUNDLE_JOBS 2 BUNDLE_PATH /bundle
+ ---> Running in 5d8eca3ac7f9
+ ---> 2cb1b635665c
+Removing intermediate container 5d8eca3ac7f9
+Step 6 : RUN bundle install
+ ---> Running in f577cc6852f7
+Don't run Bundler as root. Bundler can ask for sudo if it is needed, and
+installing your bundle as root will break this application for all non-root
+users on this machine.
+Fetching gem metadata from https://rubygems.org/..........
+Fetching version metadata from https://rubygems.org/...
+Fetching dependency metadata from https://rubygems.org/..
+Using rake 10.4.2
+Installing i18n 0.7.0
+Installing json 1.8.3 with native extensions
+Installing minitest 5.7.0
+Installing thread_safe 0.3.5
+Installing tzinfo 1.2.2
+Installing activesupport 4.2.1
+Installing builder 3.2.2
+Installing erubis 2.7.0
+Installing mini_portile 0.6.2
+Installing nokogiri 1.6.6.2 with native extensions
+Installing rails-deprecated_sanitizer 1.0.3
+Installing rails-dom-testing 1.0.6
+Installing loofah 2.0.2
+Installing rails-html-sanitizer 1.0.2
+Installing actionview 4.2.1
+Installing rack 1.6.1
+Installing rack-test 0.6.3
+Installing actionpack 4.2.1
+Installing globalid 0.3.5
+Installing activejob 4.2.1
+Installing mime-types 2.6.1
+Installing mail 2.6.3
+Installing actionmailer 4.2.1
+Installing activemodel 4.2.1
+Installing arel 6.0.0
+Installing activerecord 4.2.1
+Installing bcrypt 3.1.10 with native extensions
+Installing coderay 1.1.0
+Installing coffee-script-source 1.9.1.1
+Installing execjs 2.5.2
+Installing coffee-script 2.4.1
+Installing thor 0.19.1
+Installing railties 4.2.1
+Installing coffee-rails 4.1.0
+Installing database_cleaner 1.4.1
+Installing orm_adapter 0.5.0
+Installing responders 2.1.0
+Installing warden 1.2.3
+Installing devise 3.5.1
+Installing diff-lcs 1.2.5
+Installing docile 1.1.5
+Installing unf_ext 0.0.7.1 with native extensions
+Installing unf 0.1.4
+Installing domain_name 0.5.24
+Installing factory_girl 4.5.0
+Installing factory_girl_rails 4.5.0
+Installing faker 1.4.3
+Installing font-awesome-rails 4.3.0.0
+Installing tilt 1.4.1
+Installing haml 4.0.6
+Installing http-cookie 1.0.2
+Installing multi_json 1.11.1
+Installing jbuilder 2.3.0
+Installing jquery-rails 4.0.3
+Installing jquery-ui-rails 5.0.5
+Installing rspec-support 3.2.2
+Installing rspec-core 3.2.3
+Installing rspec-expectations 3.2.1
+Installing rspec-mocks 3.2.1
+Installing rspec 3.2.0
+Installing json_spec 1.1.4
+Installing kaminari 0.16.3
+Installing libv8 3.16.14.7
+Installing method_source 0.8.2
+Installing nested_form 0.3.2
+Installing netrc 0.10.3
+Installing pg 0.18.2 with native extensions
+Installing slop 3.6.0
+Installing pry 0.10.1
+Installing pry-rails 0.3.4
+Installing rack-pjax 0.8.0
+Installing railroady 1.3.0
+Using bundler 1.10.5
+Installing sprockets 3.2.0
+Installing sprockets-rails 2.3.1
+Installing rails 4.2.1
+Installing remotipart 1.2.1
+Installing safe_yaml 1.0.4
+Installing sass 3.4.15
+Installing sass-rails 5.0.3
+Installing rails_admin 0.6.8
+Using rdoc 4.2.0
+Installing ref 1.0.5
+Installing rest-client 1.8.0
+Installing rspec-its 1.2.0
+Installing rspec-rails 3.2.1
+Installing sdoc 0.4.1
+Installing shoulda-matchers 2.8.0
+Installing simplecov-html 0.10.0
+Installing simplecov 0.10.0
+Installing spring 1.3.6
+Installing therubyracer 0.12.2 with native extensions
+Installing turbolinks 2.5.3
+Installing uglifier 2.7.1
+Bundle complete! 22 Gemfile dependencies, 95 gems now installed.
+Bundled gems are installed into /bundle.
+Post-install message from haml:
+
+HEADS UP! Haml 4.0 has many improvements, but also has changes that may break
+your application:
+
+* Support for Ruby 1.8.6 dropped
+* Support for Rails 2 dropped
+* Sass filter now always outputs <style> tags
+* Data attributes are now hyphenated, not underscored
+* html2haml utility moved to the html2haml gem
+* Textile and Maruku filters moved to the haml-contrib gem
+
+For more info see:
+
+http://rubydoc.info/github/haml/haml/file/CHANGELOG.md
+
+ ---> f5e1920e2e47
+Removing intermediate container f577cc6852f7
+Step 7 : ADD . /myapp
+ ---> 37db8365e924
+Removing intermediate container bb703b617d9a
+Successfully built 37db8365e924
+Attaching to sdflasherserver_db_1, sdflasherserver_web_1
+db_1  | The files belonging to this database system will be owned by user "postgres".
+db_1  | This user must also own the server process.
+db_1  |
+db_1  | The database cluster will be initialized with locale "en_US.utf8".
+db_1  | The default database encoding has accordingly been set to "UTF8".
+db_1  | The default text search configuration will be set to "english".
+db_1  |
+db_1  | Data page checksums are disabled.
+db_1  |
+db_1  | fixing permissions on existing directory /var/lib/postgresql/data ... ok
+db_1  | creating subdirectories ... ok
+db_1  | selecting default max_connections ... 100
+db_1  | selecting default shared_buffers ... 128MB
+db_1  | selecting dynamic shared memory implementation ... posix
+db_1  | creating configuration files ... ok
+db_1  | creating template1 database in /var/lib/postgresql/data/base/1 ... ok
+db_1  | initializing pg_authid ... ok
+db_1  | initializing dependencies ... ok
+db_1  | creating system views ... ok
+db_1  | loading system objects' descriptions ... ok
+db_1  | creating collations ... ok
+db_1  | creating conversions ... ok
+db_1  | creating dictionaries ... ok
+db_1  | setting privileges on built-in objects ... ok
+db_1  | creating information schema ... ok
+db_1  | loading PL/pgSQL server-side language ... ok
+db_1  | vacuuming database template1 ... ok
+db_1  | copying template1 to template0 ... ok
+db_1  | copying template1 to postgres ... ok
+db_1  | syncing data to disk ... ok
+db_1  |
+db_1  | Success. You can now start the database server using:
+db_1  |
+db_1  |     postgres -D /var/lib/postgresql/data
+db_1  | or
+db_1  |     pg_ctl -D /var/lib/postgresql/data -l logfile start
+db_1  |
+db_1  |
+db_1  | WARNING: enabling "trust" authentication for local connections
+db_1  | You can change this by editing pg_hba.conf or using the option -A, or
+db_1  | --auth-local and --auth-host, the next time you run initdb.
+db_1  | ****************************************************
+db_1  | WARNING: No password has been set for the database.
+db_1  |          This will allow anyone with access to the
+db_1  |          Postgres port to access your database. In
+db_1  |          Docker's default configuration, this is
+db_1  |          effectively any other container on the same
+db_1  |          system.
+db_1  |
+db_1  |          Use "-e POSTGRES_PASSWORD=password" to set
+db_1  |          it in "docker run".
+db_1  | ****************************************************
+db_1  |
+db_1  | PostgreSQL stand-alone backend 9.4.4
+db_1  | backend> statement: ALTER USER "postgres" WITH SUPERUSER  ;
+db_1  |
+db_1  | backend>
+db_1  | LOG:  database system was shut down at 2015-07-06 22:22:37 UTC
+db_1  | LOG:  MultiXact member wraparound protections are now enabled
+db_1  | LOG:  database system is ready to accept connections
+db_1  | LOG:  autovacuum launcher started
+web_1 | [2015-07-06 22:30:40] INFO  WEBrick 1.3.1
+web_1 | [2015-07-06 22:30:40] INFO  ruby 2.2.2 (2015-04-13) [x86_64-linux]
+web_1 | [2015-07-06 22:30:40] INFO  WEBrick::HTTPServer#start: pid=1 port=3000
+

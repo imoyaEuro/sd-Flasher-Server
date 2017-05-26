@@ -1,0 +1,6 @@
+<% for b in  User.valid_roles %>
+    <%= check_box_tag "user[roles][]", b, (@object.has_role? b ) %>
+<%= h b.to_s.capitalize.sub '_', ' ' %>
+<br />
+<% end %>
+<%= hidden_field_tag "user_id", @object.id  %>

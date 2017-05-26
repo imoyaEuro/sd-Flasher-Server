@@ -1,0 +1,3 @@
+<% if provider_signed_in? %>
+Access denied (<%= link_to('Logout', destroy_provider_session_path, :method => :delete) %>)
+<% end %>
